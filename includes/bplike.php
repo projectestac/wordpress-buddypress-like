@@ -14,10 +14,18 @@ if ( ! defined( 'BPLIKE_PATH' ) ) {
     define( 'BPLIKE_PATH' , plugin_dir_path( dirname( __FILE__ ) ) );
 }
 
-add_action('plugins_loaded', 'bp_like_load_textdomain');
-function bp_like_load_textdomain() {
-	load_plugin_textdomain( 'buddypress-like' , false , BPLIKE_PATH . '/languages/' );
-}
+
+// XTEC ************ MODIFICAT - Fixed loading gettext language files
+// 2014.11.04 @aginard
+
+load_plugin_textdomain( 'buddypress-like' , false , 'buddypress-like/languages/' );
+
+//************ ORIGINAL
+/*
+load_plugin_textdomain( 'buddypress-like' , false , BPLIKE_PATH . '/languages/' );
+*/
+//************ FI
+
 
 /**
  * bp_like_get_text()
