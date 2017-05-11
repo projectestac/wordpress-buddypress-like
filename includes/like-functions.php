@@ -242,12 +242,18 @@ function bp_like_remove_user_like( $item_id = '' , $type = '' ) {
                 )
             );
 
+// XTEC ************ ELIMINAT - Fixed removal of activity when you like and then unlike your own activity post (https://wordpress.org/support/topic/bug-like-and-unlike-your-own-activity-post/)
+// 2017.05.11 @aginard
+/*
             bp_activity_delete(
                     array(
                        'id' => $update_id ,
                        'user_id' => $user_id
                     )
             );
+*/
+//************ FI
+
       }
 
     } elseif ( $type == 'activity_comment' ) {
