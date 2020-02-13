@@ -30,6 +30,13 @@ function bp_like_is_liked( $item_id, $type, $user_id) {
       $user_likes =  get_user_meta( $user_id , 'bp_liked_blogposts' , true );
     }
 
+    // XTEC ************ AFEGIT - Protection against code crash. If condition is true, 'like' button won't behave properly.
+    // 2020.02.13 @aginard
+    if (!is_array($user_likes)) {
+        return false;
+    }
+    //************ FI
+
     if ( ! isset( $user_likes ) || ! $user_likes ) {
         return false;
     } elseif ( ! array_key_exists( $item_id , $user_likes ) ) {

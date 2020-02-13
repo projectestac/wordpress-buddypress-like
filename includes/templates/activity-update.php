@@ -21,8 +21,22 @@ function bplike_activity_update_button() {
     if ( is_user_logged_in() && bp_get_activity_type() !== 'activity_liked' ) {
 
         if ( bp_activity_get_meta( bp_get_activity_id(), 'liked_count' , true ) ) {
+
+            // XTEC ************ AFEGIT - Protection against code crash. If condition is true, 'like' button won't behave properly.
+            // 2020.02.13 @aginard
+            if (!is_array(bp_activity_get_meta(bp_get_activity_id(), 'liked_count', true))) {
+                $liked_count = 0;
+            } else {
+            //************ FI
+
             $users_who_like = array_keys( bp_activity_get_meta( bp_get_activity_id(), 'liked_count' , true ) );
             $liked_count = count( $users_who_like );
+
+            // XTEC ************ AFEGIT - Protection against code crash. If condition is true, 'like' button won't behave properly.
+            // 2020.02.13 @aginard
+            }
+            //************ FI
+
         }
 
         if ( ! bp_like_is_liked( bp_get_activity_id(), 'activity_update', get_current_user_id() ) ) {
